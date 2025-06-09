@@ -480,16 +480,30 @@
     padding: 0.7rem 0.2rem !important;
   }
   .proyecto-menu-cards .portfolio-card img {
-    max-width: 96vw !important;
-    height: 120px !important;
+    max-width: 70vw !important;
+    width: 70vw !important;
+    max-height: 120px !important;
+    height: auto !important;
+    margin: 0 auto 0.7rem auto !important;
+    display: block !important;
+    border-radius: 14px !important;
+    box-shadow: 0 2px 8px #01a54b22 !important;
+    background: #fff !important;
+    padding: 0 !important;
+    object-fit: contain !important;
   }
-  .proyecto-menu-cards .portfolio-card-title,
-  .proyecto-menu-cards .portfolio-card-desc {
-    font-size: 0.92rem !important;
+  .proyecto-menu-cards .portfolio-card-title, .proyecto-menu-cards .portfolio-card-desc {
+    font-size: 0.85rem !important;
   }
   .proyecto-menu-cards .portfolio-card-link {
-    font-size: 0.92rem !important;
-    padding: 0.2rem 0.7rem !important;
+    font-size: 0.85rem !important;
+    padding: 0.2rem 0.4rem !important;
+  }
+}
+@media (max-width: 400px) {
+  .proyecto-menu-cards .portfolio-card {
+    max-width: 100% !important;
+    padding: 0.1rem 0.01rem 0.3rem 0.01rem !important;
   }
 }
 /* --- Fin alineación Proyecto Menu --- */
@@ -510,6 +524,16 @@
   min-width: 0 !important;
   margin: 0 !important;
   box-sizing: border-box !important;
+}
+.portfolio-preview .portfolio-card:nth-child(3) img {
+  max-width: 100% !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 0 auto !important;
+  box-shadow: 0 2px 12px #0001 !important;
+  border-radius: 12px !important;
 }
 @media (max-width: 600px) {
   .portfolio-preview {
@@ -689,9 +713,9 @@ document.querySelectorAll('.navbar-nav .nav-link').forEach(function(link){
     }
   });
 });
-</script>
+      </script>
       <main style="max-width:1100px; margin:40px auto 0 auto; padding:40px 24px 0 24px;">
-        <h1 class="main-title page-anim-text delay-1" style="text-align:center; font-size:4.2rem; font-weight:900; letter-spacing:0.09em; margin-bottom:1.2rem; color:#111;">Nuestro Portafolio</h1>
+        <h1 class="main-title page-anim-text delay-1">Nuestro Portafolio</h1>
         <div class="subtitle page-anim-text delay-2" style="text-align:center; color:#111; font-size:2.3rem; margin-bottom:2.7rem; font-weight:700; letter-spacing:0.04em;">Explora un poco sobre nuestro trabajo</div>
         <section class="features-list page-anim-text delay-3" style="display:flex; flex-wrap:wrap; justify-content:center; gap:2.2rem; margin:2.7rem 0;">
           <div class="feature" style="font-size:1.3rem;">Responsive</div>
@@ -1218,13 +1242,13 @@ document.querySelectorAll('.navbar-nav .nav-link').forEach(function(link){
               span.textContent = tag;
               span.style.background = tag === 'Pagina Web' ? '#01a54b' : '#111';
               span.style.color = '#fff';
-              span.style.borderRadius = '12px';
+                           span.style.borderRadius = '12px';
               span.style.padding = '0.18rem 0.9rem';
               span.style.fontSize = '0.92rem';
               span.style.fontWeight = '600';
               span.style.letterSpacing = '0.03em';
               span.style.margin = '0 0.2rem';
-                           tagsDiv.appendChild(span);
+              tagsDiv.appendChild(span);
             });
             // Carrusel con id único
             const carrusel = renderCarrusel(carruselImgs[titulo] || []);
@@ -1261,6 +1285,8 @@ document.querySelectorAll('.navbar-nav .nav-link').forEach(function(link){
         });
         document.getElementById('cerrarModalProyecto').onclick = function(){
           document.getElementById('modalProyecto').style.display = 'none';
+          document.getElementById('infoModalDesc').style.display = '';
+          document.getElementById('infoModalTags').style.display = '';
         };
         document.getElementById('modalProyecto').onclick = function(e){
           if(e.target === this) this.style.display = 'none';
@@ -1280,42 +1306,15 @@ document.querySelectorAll('.navbar-nav .nav-link').forEach(function(link){
         });
         document.querySelectorAll('.preview-carrusel-trigger').forEach(function(img){
   img.onclick = function(){
-    // Obtiene las imágenes del atributo data-imgs
-    let imgs = [];
-    try { imgs = JSON.parse(img.getAttribute('data-imgs')); } catch(e) {}
-    // Usa el mismo renderCarrusel y modal que los módulos
-    const carrusel = renderCarrusel(imgs);
+    // Show the modalProyecto with the image directly (no carousel/card)
     document.getElementById('infoModalTitulo').textContent = 'Proyectos Recientes';
-    document.getElementById('infoModalTitulo').style.color = '#01a54b';
-    document.getElementById('infoModalDesc').innerHTML = '';
-    document.getElementById('infoModalTags').innerHTML = '';
-    document.getElementById('infoModalCarrusel').innerHTML = carrusel.html;
-    function startCarouselWhenReadyPreview() {
-      if(window.bootstrap && window.bootstrap.Carousel) {
-        var el = document.getElementById(carrusel.id);
-        if(el) {
-          var carouselInstance = window.bootstrap.Carousel.getOrCreateInstance(el, {
-            interval: 3000,
-            ride: 'carousel',
-            pause: false,
-            wrap: true
-          });
-          carouselInstance.cycle();
-        }
-        var imgsCarrusel = document.querySelectorAll(`#${carrusel.id} .img-carrusel-articulo`);
-        imgsCarrusel.forEach(function(img2){
-          img2.onclick = function(){
-            document.getElementById('imgAmpliada').src = img2.src;
-            document.getElementById('modalImgAmpliada').style.display = 'flex';
-          };
-        });
-      } else {
-        setTimeout(startCarouselWhenReadyPreview, 100);
-      }
-    }
-    startCarouselWhenReadyPreview();
+    document.getElementById('infoModalTitulo').style.display = '';
+    document.getElementById('infoModalCarrusel').innerHTML = '<img src="' + img.src + '" alt="Proyecto Reciente" style="max-width:98vw; max-height:70vh; width:auto; height:auto; display:block; margin:0 auto; border-radius:18px; box-shadow:0 4px 24px #01a54b44; background:#fff;">';
+    document.getElementById('infoModalCarrusel').style.display = '';
+    document.getElementById('infoModalDesc').style.display = 'none';
+    document.getElementById('infoModalTags').style.display = 'none';
     document.getElementById('modalProyecto').style.display = 'flex';
-    animateModalText();
+    animateModalText && animateModalText();
   };
 });
         // --- Al abrir el modal de proyectos recientes o cualquier módulo ---
@@ -1387,11 +1386,13 @@ document.querySelectorAll('.portfolio-card-link').forEach(function(btn){
   if(menuCarruseles[titulo]){
     btn.addEventListener('click', function(e){
       e.preventDefault();
-      // Usa renderCarrusel para unificar el estilo con el resto de la página
-      const carrusel = renderCarrusel(menuCarruseles[titulo]);
+      // Usa renderCarrusel para mostrar el carrusel como antes
+      const carrusel = renderCarrusel(menuCarruseles[titulo], true);
       document.getElementById('infoModalTitulo').textContent = titulo;
       document.getElementById('infoModalCarrusel').innerHTML = carrusel.html;
       document.getElementById('infoModalDesc').innerHTML = card.querySelector('.portfolio-card-desc').innerHTML;
+      document.getElementById('infoModalDesc').style.display = '';
+      document.getElementById('infoModalTags').style.display = '';
       document.getElementById('modalProyecto').style.display = 'flex';
       animateModalText && animateModalText();
       // Permite ampliar imagen

@@ -386,7 +386,7 @@ body {
     box-sizing: border-box !important;
   }
 }
-/* --- PORTAFOLIO MINIMAL NAVBAR & TOGGLER MOBILE STYLES --- */
+/* Mobile navbar styles for uniformity - matches Contacto.html */
 @media (max-width: 600px) {
   .navbar {
     padding: 0.7rem 4vw !important;
@@ -470,4 +470,3 @@ body {
     transition: filter 0.2s;
   }
 }
-/* --- END PORTAFOLIO MINIMAL NAVBAR & TOGGLER MOBILE STYLES --- */
