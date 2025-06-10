@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portafolio Minimal | Gastronome</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Portafolio Minimal | Gastronome</title>  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="navbar-mobile.css">
+  <link rel="stylesheet" href="navbar-reset.css">
   <style>
     html, body {
   max-width: 100vw !important;
@@ -23,7 +24,17 @@
   }
 }
     body { background: #fff; color: #111; font-family: 'Segoe UI', Arial, sans-serif; }
-    .main-title { font-size: 2.5rem; font-weight: 800; letter-spacing: 0.08em; margin-top: 3rem; text-align: center; }
+    .main-title {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block !important;
+  width: 100%;
+  font-size: 2.3rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
     .subtitle { text-align: center; color: #888; font-size: 1.2rem; margin-bottom: 2.5rem; }
     .features-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin: 2.5rem 0; }
     .feature { min-width: 180px; font-size: 1.1rem; color: #222; display: flex; align-items: center; gap: 0.7rem; }
@@ -138,32 +149,47 @@
     .footer-content { max-width: 100vw; }
     /* Animación para aparición de palabras en el modal */
 @keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(24px); }
-  60% { opacity: 1; transform: translateY(-4px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
 }
-.modal-anim-text {
+.reveal-on-scroll {
   opacity: 0;
-  animation: fadeInUp 0.7s cubic-bezier(.4,1.6,.6,1) forwards;
+  transition: opacity 0.3s, transform 0.3s;
 }
-.modal-anim-text.delay-1 { animation-delay: 0.12s; }
-.modal-anim-text.delay-2 { animation-delay: 0.24s; }
-.modal-anim-text.delay-3 { animation-delay: 0.36s; }
-.modal-anim-text.delay-4 { animation-delay: 0.48s; }
-.modal-anim-text.delay-5 { animation-delay: 0.6s; }
-@keyframes slideInLeft {
-  0% { opacity: 0; transform: translateX(-60px); }
-  60% { opacity: 1; transform: translateX(8px); }
-  100% { opacity: 1; transform: translateX(0); }
+.reveal-on-scroll.visible {
+  animation: fadeInUp 0.7s cubic-bezier(.4,1.6,.6,1) both;
 }
-.page-anim-text {
-  opacity: 0;
-  animation: slideInLeft 1.1s cubic-bezier(.4,1.6,.6,1) forwards;
-      .carousel-inner .img-carrusel-articulo {
+@media (max-width: 600px) {
+  /* En móvil, los módulos (cards) también animan como los títulos pero con desplazamiento menor */
+  .reveal-on-scroll {
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .reveal-on-scroll.visible {
+    animation: fadeInUpMobile 0.65s cubic-bezier(.4,1.6,.6,1) both;
+  }
+  @keyframes fadeInUpMobile {
+    0% {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+    .carousel-inner .img-carrusel-articulo {
   height: 220px;
   max-width: 98vw;
 }
-    }
+    
 .carousel-inner .img-carrusel-articulo.menu-digital-celular {
   width: 100%;
   max-width: 320px;
@@ -181,26 +207,6 @@
     height: 340px;
     max-width: 98vw;
   }
-}
-.navbar-nav .nav-link.active {
-  color: #01a54b !important;
-  border: 1.2px solid #01a54b !important;
-  border-radius: 1em !important;
-  background: #fff !important;
-  font-weight: 800;
-  padding: 0.32em 0.85em !important;
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
-}
-.navbar-nav .nav-link {
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
-  border-radius: 1em;
-  border: 1.2px solid transparent;
-  padding: 0.32em 0.85em;
-}
-.navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus {
-  color: #01a54b !important;
-  border: 1.2px solid #01a54b !important;
-  background: #fff !important;
 }
 /* Botón scroll to top */
 #scrollTopBtn {
@@ -708,7 +714,7 @@ document.querySelectorAll('.navbar-nav .nav-link').forEach(function(link){
   link.addEventListener('click', function(){
     var navbarCollapse = document.getElementById('mainNavbar');
     if(window.innerWidth <= 768 && navbarCollapse.classList.contains('show')) {
-      var collapse = bootstrap.Collapse.getOrCreateInstance(navbarCollapse);
+      var collapse = new bootstrap.Collapse(navbarCollapse);
       collapse.hide();
     }
   });
@@ -1242,7 +1248,7 @@ document.querySelectorAll('.navbar-nav .nav-link').forEach(function(link){
               span.textContent = tag;
               span.style.background = tag === 'Pagina Web' ? '#01a54b' : '#111';
               span.style.color = '#fff';
-                           span.style.borderRadius = '12px';
+              span.style.borderRadius = '12px';
               span.style.padding = '0.18rem 0.9rem';
               span.style.fontSize = '0.92rem';
               span.style.fontWeight = '600';
@@ -1451,5 +1457,87 @@ document.querySelectorAll('.portfolio-card-link').forEach(function(btn){
           </a>
         </div>
       </footer>
+      <!-- --- Animación de aparición progresiva al hacer scroll --- -->
+<script>
+// --- Animación de aparición progresiva al hacer scroll (optimizada con IntersectionObserver) ---
+(function() {
+  function reveal(entries, observer) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }
+  var observer = new IntersectionObserver(reveal, { threshold: 0.12 });
+  document.addEventListener('DOMContentLoaded', function() {
+    var isMobile = window.innerWidth <= 600;
+    var selector = isMobile
+      ? '.main-title, .subtitle, .portfolio-section-title'
+      : '.main-title, .subtitle, .portfolio-section-title, .portfolio-card, .feature, .portfolio-img, .portfolio-card-title, .portfolio-card-desc, .portfolio-card-link, .portfolio-preview .portfolio-card, .portfolio-cards, .portfolio-section-bg';
+    document.querySelectorAll(selector).forEach(function(el) {
+      el.classList.add('reveal-on-scroll');
+      observer.observe(el);
+    });
+  });
+})();
+</script>
+<style>
+@media (max-width: 600px) {
+  .portfolio-card-title, .portfolio-card-desc, .portfolio-card-link {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.45s cubic-bezier(.4,1.6,.6,1), transform 0.45s cubic-bezier(.4,1.6,.6,1);
+  }
+  .portfolio-card.visible .portfolio-card-title {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0.08s;
+  }
+  .portfolio-card.visible .portfolio-card-desc {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0.22s;
+  }
+  .portfolio-card.visible .portfolio-card-link {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0.36s;
+  }
+}
+</style>
+<script>
+(function() {
+  // Animación de aparición progresiva para móvil: títulos y módulos
+  function reveal(entries, observer) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Si es un módulo, animar textos internos con delay
+        if (window.innerWidth <= 600 && entry.target.classList.contains('portfolio-card')) {
+          var title = entry.target.querySelector('.portfolio-card-title');
+          var desc = entry.target.querySelector('.portfolio-card-desc');
+          var link = entry.target.querySelector('.portfolio-card-link');
+          if (title) title.style.transitionDelay = '0.08s';
+          if (desc) desc.style.transitionDelay = '0.22s';
+          if (link) link.style.transitionDelay = '0.36s';
+        }
+        observer.unobserve(entry.target);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    var isMobile = window.innerWidth <= 600;
+    var mobileSelector = '.main-title, .subtitle, .portfolio-section-title, .portfolio-card, .feature';
+    var observerMobile = new IntersectionObserver(reveal, { threshold: 0.13 });
+    if (isMobile) {
+      document.querySelectorAll(mobileSelector).forEach(function(el) {
+        el.classList.add('reveal-on-scroll-mobile');
+        observerMobile.observe(el);
+      });
+    }
+  });
+})();
+</script>
     </body>
 </html>

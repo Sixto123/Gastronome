@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
-    <title>Nosotros | Gastronome</title>
-    <link rel="stylesheet" href="index.css">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">    <style>
+    <title>Nosotros | Gastronome</title>    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="navbar-mobile.css">
+    <link rel="stylesheet" href="navbar-reset.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><style>
         html, body {
             max-width: 100vw;
             overflow-x: hidden;
@@ -117,8 +118,7 @@
             .container { flex-direction: column !important; padding: 20px !important; }
             section .container { gap: 24px !important; }
             .row { gap: 1.2rem !important; }
-            .btn { font-size: 1rem !important; padding: 10px 18px !important; }
-        }        @media (max-width: 600px) {
+            .btn { font-size: 1rem !important; padding: 10px 18px !important; }        }        @media (max-width: 600px) {
           html, body {
             max-width: 100vw !important;
             overflow-x: hidden !important;
@@ -180,87 +180,9 @@
             object-fit: contain !important;
             border-radius: 14px !important;
             box-shadow: 0 2px 12px #0001 !important;
-          }          .navbar {
-            padding: 0.7rem 4vw !important;
-            min-width: 0 !important;
-            max-width: 100vw !important;
-            background: #fff !important;
-            border-bottom: 1.5px solid #eee !important;
-            border-radius: 0 0 18px 18px !important;
-            box-shadow: 0 2px 16px #0001 !important;
-            position: sticky !important;
-            top: 0 !important;
-            z-index: 1002 !important;
           }
-          .navbar-collapse {
-            background: #fff !important;
-            border-radius: 0 0 18px 18px !important;
-            box-shadow: 0 2px 16px #0001 !important;
-            margin-top: 0.5rem !important;
-            padding: 1.2rem 0.5rem !important;
-            position: absolute !important;
-            left: 0; right: 0;
-            top: 100%;
-            z-index: 1001 !important;
-            width: 100vw !important;
-            max-width: 100vw !important;
-          }
-          .navbar-nav {
-            flex-direction: column !important;
-            gap: 1rem !important;
-            align-items: flex-start !important;
-            width: 100%;
-            padding: 0 !important;
-            margin: 0 !important;
-          }
-          .navbar-nav .nav-link {
-            font-size: 1.35rem !important;
-            padding: 0.38em 1.3em !important;
-            min-width: 64vw !important;
-            border-radius: 1.3em !important;
-            border-width: 1.2px !important;
-            box-sizing: border-box !important;
-            position: relative;
-            z-index: 2;
-            background: #fff !important;
-            margin: 0.18em 0 !important;
-            text-align: left !important;
-            transition: background 0.2s, color 0.2s, border-color 0.2s;
-          }
-          .navbar-nav .nav-link.active {
-            box-shadow: 0 0 0 2px #01a54b33 !important;
-            border: 1.2px solid #01a54b !important;
-            background: #fff !important;
-            color: #01a54b !important;
-            z-index: 2;
-            position: relative;
-          }
-          .navbar-toggler {
-            margin-right: 2vw !important;
-            margin-left: auto !important;
-            border-radius: 0 !important;
-            border: 1.5px solid #01a54b !important;
-            background: #fff !important;
-            width: 54px !important;
-            height: 54px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            z-index: 1003 !important;
-            box-shadow: 0 2px 16px #0001 !important;
-            transition: background 0.2s, border-color 0.2s;
-          }
-          .navbar-toggler:active, .navbar-toggler:focus {
-            background: #f6fff9 !important;
-            border-color: #01a54b !important;
-          }
-          .navbar-toggler-icon {
-            width: 36px !important;
-            height: 36px !important;
-            margin: 0 auto !important;
-            background-size: 36px 36px !important;
-            transition: filter 0.2s;
-          }/* Esconde figuras decorativas en móvil */
+
+          /* Esconde figuras decorativas en móvil */
           .figura-serv, .figura-1, .figura-2, .figura-3, .figura-4, .figura-5, .figura-6, .figura-7, .figura-8 {
             display: none !important;
           }
@@ -320,28 +242,7 @@
         }
         .sobre-card-flex:hover, .sobre-card-flex:focus-within {
             border-color: #01a54b !important;
-            box-shadow: 0 8px 32px #01a54b33 !important;
-        }
-        .navbar-nav .nav-link.active {
-          color: #01a54b !important;
-          border: 1.2px solid #01a54b !important;
-          border-radius: 1em !important;
-          background: #fff !important;
-          font-weight: 800;
-          padding: 0.32em 0.85em !important;
-          transition: color 0.2s, border-color 0.2s, background 0.2s;
-        }
-        .navbar-nav .nav-link {
-          transition: color 0.2s, border-color 0.2s, background 0.2s;
-          border-radius: 1em;
-          border: 1.2px solid transparent;
-          padding: 0.32em 0.85em;
-        }
-        .navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus {
-          color: #01a54b !important;
-          border: 1.2px solid #01a54b !important;
-          background: #fff !important;
-        }
+            box-shadow: 0 8px 32px #01a54b33 !important;        }
         /* Botón scroll to top */
         #scrollTopBtn {
           display: none;
@@ -441,13 +342,12 @@
       </div>
     </div>
   </nav>
-  <script>
-  // Refuerzo: cerrar menú móvil al hacer click en un link (mejor UX móvil)
+  <script>  // Refuerzo: cerrar menú móvil al hacer click en un link (mejor UX móvil)
   document.querySelectorAll('.navbar-nav .nav-link').forEach(function(link){
     link.addEventListener('click', function(){
       var navbarCollapse = document.getElementById('mainNavbar');
       if(window.innerWidth <= 768 && navbarCollapse.classList.contains('show')) {
-        var collapse = bootstrap.Collapse.getOrCreateInstance(navbarCollapse);
+        var collapse = new bootstrap.Collapse(navbarCollapse);
         collapse.hide();
       }
     });
@@ -461,22 +361,17 @@
     else if(path.includes('portafoliominimal.html') || path.includes('portafolio.html')) document.querySelector('.PORTAFOLIO_ACTIVE').classList.add('active');
     else if(path.includes('contacto.html')) document.querySelector('.CONTACTO_ACTIVE').classList.add('active');
   })();
-  // Fix menú hamburguesa para móvil (Bootstrap 4/5 compatibilidad)
+  
+  // Fix menú hamburguesa para Bootstrap 5
   (function() {
     function fixNavbarMobile() {
       var btn = document.querySelector('.navbar-toggler');
       if (!btn) return;
-      if (window.innerWidth <= 600) {
-        btn.setAttribute('data-toggle', 'collapse');
-        btn.setAttribute('data-target', '#mainNavbar');
-        btn.removeAttribute('data-bs-toggle');
-        btn.removeAttribute('data-bs-target');
-      } else {
-        btn.setAttribute('data-bs-toggle', 'collapse');
-        btn.setAttribute('data-bs-target', '#mainNavbar');
-        btn.removeAttribute('data-toggle');
-        btn.removeAttribute('data-target');
-      }
+      // Bootstrap 5 usa data-bs-* attributes por defecto
+      btn.setAttribute('data-bs-toggle', 'collapse');
+      btn.setAttribute('data-bs-target', '#mainNavbar');
+      btn.removeAttribute('data-toggle');
+      btn.removeAttribute('data-target');
     }
     fixNavbarMobile();
     window.addEventListener('resize', fixNavbarMobile);
@@ -868,12 +763,8 @@
 
     <button id="scrollTopBtn" title="Volver arriba" aria-label="Volver arriba">
       <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#01a54b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 14 12 8 18 14"/></svg>
-    </button>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>      // Sistema de animación gradual optimizado para móvil - RESTORED & OPTIMIZED
+    </button>    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>// Sistema de animación gradual optimizado para móvil - RESTORED & OPTIMIZED
       document.addEventListener('DOMContentLoaded', function() {
         function revealElements() {
           var elements = document.querySelectorAll('.reveal-element');
@@ -946,14 +837,12 @@
             el.style.position = 'sticky';
           }
         });
-      }
-
-      // Refuerzo: cerrar menú móvil al hacer click en un link (mejor UX móvil)
+      }      // Refuerzo: cerrar menú móvil al hacer click en un link (mejor UX móvil)
       document.querySelectorAll('.navbar-nav .nav-link').forEach(function(link){
         link.addEventListener('click', function(){
           var navbarCollapse = document.getElementById('mainNavbar');
           if(window.innerWidth <= 768 && navbarCollapse.classList.contains('show')) {
-            var collapse = bootstrap.Collapse.getOrCreateInstance(navbarCollapse);
+            var collapse = new bootstrap.Collapse(navbarCollapse);
             collapse.hide();
           }
         });

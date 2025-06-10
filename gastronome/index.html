@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gastronome | Menús y Web para Restaurantes</title>
   <link rel="preload" as="image" href="./Fotos_Gas/fondo1.webp">
-  <link rel="preload" as="image" href="./Fotos_Gas/menu-inicio.webp">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="estilos.css">
+  <link rel="preload" as="image" href="./Fotos_Gas/menu-inicio.webp">  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="navbar-mobile.css">
+  <link rel="stylesheet" href="navbar-reset.css">
   <style>
     /* Animación de entrada para textos (slideInLeft) */
     @keyframes slideInLeft {
@@ -19,11 +20,27 @@
       opacity: 0;
       animation: slideInLeft 1.1s cubic-bezier(.4,1.6,.6,1) forwards;
       animation-play-state: paused;
-    }
-    .page-anim-text.delay-1 { animation-delay: 0.08s; }
+    }    .page-anim-text.delay-1 { animation-delay: 0.08s; }
     .page-anim-text.delay-2 { animation-delay: 0.22s; }
     .page-anim-text.delay-3 { animation-delay: 0.36s; }
     .page-anim-text.delay-4 { animation-delay: 0.5s; }
+    
+    /* Animaciones adicionales para elementos */
+    .page-anim-text.animated {
+      animation-play-state: running !important;
+    }
+    
+    /* Sistema de animaciones móvil optimizadas */
+    .reveal-element {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .reveal-element.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
     /* Botón Contacto estilo solicitado */
     .main-contact-btn {
       background: #111;
@@ -70,23 +87,63 @@
     }
     @media (max-width: 900px) {
       section[style*="background:url"] h1 { font-size:2.1rem !important; }
-      section[style*="background:url"] div[style*='max-width:700px'] { padding:1.5rem 0.5rem !important; }
-    }
-    @media (max-width: 600px) {
+      section[style*="background:url"] div[style*='max-width:700px'] { padding:1.5rem 0.5rem !important; }    }    @media (max-width: 600px) {
       html, body {
-        font-size: 19px !important;
         padding: 0 !important;
         margin: 0 !important;
         max-width: 100vw !important;
         overflow-x: hidden !important;
-        background: #fff !important;
+        background: #fff !important;      }
+      
+      /* Hero section mobile: reorganizar texto */
+      .hero-blur h1 {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.2rem !important;
+        line-height: 1.1 !important;
+        font-size: 0 !important; /* Oculta el texto original completamente */
+        text-indent: -9999px !important; /* Backup para ocultar texto */
+        color: transparent !important; /* Backup adicional */
       }
+      .hero-blur h1::before {
+        content: "BIENVENIDO A" !important;
+        font-size: 0.9rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.12em !important;
+        color: #fff !important;
+        text-shadow: 0 4px 24px #000, 0 2px 12px #000b !important;
+        margin-bottom: 0.1rem !important;
+        text-indent: 0 !important;
+      }
+      .hero-blur h1::after {
+        content: "GASTRONOME" !important;
+        font-size: 2.8rem !important;
+        font-weight: 900 !important;
+        letter-spacing: 0.06em !important;
+        color: #fff !important;
+        text-shadow: 0 4px 24px #000, 0 2px 12px #000b !important;
+        text-indent: 0 !important;
+      }
+      /* Slogans más pequeños en móvil */
+      .hero-blur > div > div:first-child {
+        font-size: 0.95rem !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.08em !important;
+      }
+      .hero-blur > div > div:last-child {
+        font-size: 0.85rem !important;
+        font-weight: 400 !important;
+      }
+      
       main, section, .portfolio-section-bg, .features-list, .portfolio-cards, .portfolio-preview {
         padding-left: 4vw !important;
         padding-right: 4vw !important;
         box-sizing: border-box !important;
-      }
-      h1, h2, h3, .main-title, .portfolio-section-title, .subtitle {
+      }      h1:not(.navbar h1):not(.navbar-brand h1), 
+      h2:not(.navbar h2), 
+      h3:not(.navbar h3), 
+      .main-title, .portfolio-section-title, .subtitle {
         font-size: 1.35rem !important;
         line-height: 1.22 !important;
         margin-left: 0 !important;
@@ -136,90 +193,8 @@
         font-size: 1.13rem !important;
         padding: 0.4rem 1.1rem !important;
         margin-top: 0.3rem !important;
-        margin-bottom: 0.1rem !important;
-      }      /* Mobile navbar styles for uniformity - matches Contacto.html */
-      .navbar {
-        padding: 0.7rem 4vw !important;
-        min-width: 0 !important;
-        max-width: 100vw !important;
-        background: #fff !important;
-        border-bottom: 1.5px solid #eee !important;
-        border-radius: 0 0 18px 18px !important;
-        box-shadow: 0 2px 16px #0001 !important;
-        position: sticky !important;
-        top: 0 !important;
-        z-index: 1002 !important;
-      }
-      .navbar-collapse {
-        background: #fff !important;
-        border-radius: 0 0 18px 18px !important;
-        box-shadow: 0 2px 16px #0001 !important;
-        margin-top: 0.5rem !important;
-        padding: 1.2rem 0.5rem !important;
-        position: absolute !important;
-        left: 0; right: 0;
-        top: 100%;
-        z-index: 1001 !important;
-        width: 100vw !important;
-        max-width: 100vw !important;
-      }
-      .navbar-nav {
-        flex-direction: column !important;
-        gap: 1rem !important;
-        align-items: flex-start !important;
-        width: 100%;
-        padding: 0 !important;
-        margin: 0 !important;
-      }
-      .navbar-nav .nav-link {
-        font-size: 1.35rem !important;
-        padding: 0.38em 1.3em !important;
-        min-width: 64vw !important;
-        border-radius: 1.3em !important;
-        border-width: 1.2px !important;
-        box-sizing: border-box !important;
-        position: relative;
-        z-index: 2;
-        background: #fff !important;
-        margin: 0.18em 0 !important;
-        text-align: left !important;
-        transition: background 0.2s, color 0.2s, border-color 0.2s;
-      }
-      .navbar-nav .nav-link.active {
-        box-shadow: 0 0 0 2px #01a54b33 !important;
-        border: 1.2px solid #01a54b !important;
-        background: #fff !important;
-        color: #01a54b !important;
-        z-index: 2;
-        position: relative;
-      }
-      .navbar-toggler {
-        margin-right: 2vw !important;
-        margin-left: auto !important;
-        border-radius: 0 !important;
-        border: 1.5px solid #01a54b !important;
-        background: #fff !important;
-        width: 54px !important;
-        height: 54px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        z-index: 1003 !important;
-        box-shadow: 0 2px 16px #0001 !important;
-        transition: background 0.2s, border-color 0.2s;
-      }
-      .navbar-toggler:active, .navbar-toggler:focus {
-        background: #f6fff9 !important;
-        border-color: #01a54b !important;
-      }
-      .navbar-toggler-icon {
-        width: 36px !important;
-        height: 36px !important;
-        margin: 0 auto !important;
-        background-size: 36px 36px !important;
-        transition: filter 0.2s;
-      }
-      footer, .footer-content {
+        margin-bottom: 0.1rem !important;      }      footer:not(.navbar footer):not(.navbar), 
+      .footer-content:not(.navbar .footer-content):not(.navbar-footer) {
         padding-left: 4vw !important;
         padding-right: 4vw !important;
         font-size: 1.08rem !important;
@@ -301,29 +276,7 @@
       background: #01a54b;
       color: #fff;
       border-color: #01a54b;
-      box-shadow: none;
-    }
-    /* Estilos globales para navbar */
-    .navbar-nav .nav-link.active {
-      color: #01a54b !important;
-      border: 1.2px solid #01a54b !important;
-      border-radius: 1em !important;
-      background: #fff !important;
-      font-weight: 800;
-      padding: 0.32em 0.85em !important;
-      transition: color 0.2s, border-color 0.2s, background 0.2s;
-    }
-    .navbar-nav .nav-link {
-      transition: color 0.2s, border-color 0.2s, background 0.2s;
-      border-radius: 1em;
-      border: 1.2px solid transparent;
-      padding: 0.32em 0.85em;
-    }
-    .navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus {
-      color: #01a54b !important;
-      border: 1.2px solid #01a54b !important;
-      background: #fff !important;
-    }
+      box-shadow: none;    }
     /* Botón scroll to top */
     #scrollTopBtn {
       display: none;
@@ -354,12 +307,8 @@
     }
     #scrollTopBtn:hover {
       background: #01a54b22;
-      color: #01a54b;
-    }
-    /* 1. Escalado proporcional de fuentes y paddings */
-    html {
-      font-size: clamp(15px, 1.2vw + 1.2vh, 22px);
-    }
+      color: #01a54b;    }    /* 1. Escalado proporcional de fuentes y paddings */
+    
     body, html {
       overflow-x: hidden !important;
       max-width: 100vw !important;
@@ -371,15 +320,106 @@
     }
     .hero-blur h1 {
       font-size: clamp(2.2rem, 5vw, 4.2rem) !important;
-    }
-
-    /* 3. Galería: gap y tamaño adaptativos */
-    section[style*="Galeria de Proyectos"] div[style*="display:flex"] {
-      gap: clamp(0.7rem, 2vw, 1.5rem) !important;
+    }    /* 3. Galería: gap y tamaño adaptativos */
+    section[style*="Galeria de Proyectos"] div[style*="display:grid"] {
+      gap: clamp(0.7rem, 2vw, 2rem) !important;
     }
     .proyecto-img {
-      width: clamp(110px, 18vw, 180px) !important;
-      height: clamp(110px, 18vw, 180px) !important;
+      width: clamp(110px, 18vw, 320px) !important;
+      height: clamp(110px, 18vw, 320px) !important;
+    }
+
+    /* Galería adaptativa mejorada */
+    @media (max-width: 1200px) {
+      section[style*="Galeria de Proyectos"] h2 {
+        font-size: 3rem !important;
+      }
+      section[style*="Galeria de Proyectos"] div[style*="grid-template-columns"] {
+        max-width: 700px !important;
+        gap: 1.5rem !important;
+      }
+      .proyecto-img {
+        width: 280px !important;
+        height: 280px !important;
+      }
+    }
+    
+    @media (max-width: 900px) {
+      section[style*="Galeria de Proyectos"] h2 {
+        font-size: 2.8rem !important;
+      }
+      section[style*="Galeria de Proyectos"] div[style*="grid-template-columns"] {
+        max-width: 600px !important;
+        gap: 1.2rem !important;
+      }
+      .proyecto-img {
+        width: 240px !important;
+        height: 240px !important;
+      }
+    }
+    
+    @media (max-width: 700px) {
+      section[style*="Galeria de Proyectos"] h2 {
+        font-size: 2.5rem !important;
+      }
+      section[style*="Galeria de Proyectos"] div[style*="grid-template-columns"] {
+        max-width: 500px !important;
+        gap: 1rem !important;
+      }
+      .proyecto-img {
+        width: 200px !important;
+        height: 200px !important;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      section[style*="Galeria de Proyectos"] h2 {
+        font-size: 2.2rem !important;
+        margin-bottom: 0.3rem !important;
+      }
+      section[style*="Galeria de Proyectos"] p {
+        font-size: 1rem !important;
+        margin-bottom: 2rem !important;
+      }
+      section[style*="Galeria de Proyectos"] div[style*="grid-template-columns"] {
+        max-width: 100vw !important;
+        gap: 0.8rem !important;
+        padding: 0 2vw !important;
+      }
+      .proyecto-img {
+        width: 42vw !important;
+        height: 42vw !important;
+        max-width: 180px !important;
+        max-height: 180px !important;
+      }
+    }
+    
+    @media (max-width: 400px) {
+      section[style*="Galeria de Proyectos"] h2 {
+        font-size: 1.8rem !important;
+      }
+      section[style*="Galeria de Proyectos"] div[style*="grid-template-columns"] {
+        gap: 0.5rem !important;
+      }
+      .proyecto-img {
+        width: 44vw !important;
+        height: 44vw !important;
+        max-width: 160px !important;
+        max-height: 160px !important;
+      }
+    }
+    
+    /* Título grande en todas las resoluciones */
+    @media (min-width: 1400px) {
+      section[style*="Galeria de Proyectos"] h2 {
+        font-size: 4rem !important;
+      }
+    }
+    
+    @media (min-width: 1800px) {
+      section[style*="Galeria de Proyectos"] h2 {
+        font-size: 4.5rem !important;
+      }
     }
 
     /* 4. Cards de servicios/proceso/beneficios: flex adaptativo */
@@ -852,44 +892,54 @@
     else if(path.includes('servicios.html')) document.querySelector('.SERVICIOS_ACTIVE').classList.add('active');
     else if(path.includes('portafoliominimal.html')) document.querySelector('.PORTAFOLIO_ACTIVE').classList.add('active');
     else if(path.includes('contacto.html')) document.querySelector('.CONTACTO_ACTIVE').classList.add('active');
-  })();
-  </script>
-  <script>
-  // Refuerzo: cerrar menú móvil al hacer click en un link (mejor UX móvil)
+  })();  // Refuerzo: cerrar menú móvil al hacer click en un link (mejor UX móvil)
   document.querySelectorAll('.navbar-nav .nav-link').forEach(function(link){
     link.addEventListener('click', function(){
       var navbarCollapse = document.getElementById('mainNavbar');
       if(window.innerWidth <= 768 && navbarCollapse.classList.contains('show')) {
-        var collapse = bootstrap.Collapse.getOrCreateInstance(navbarCollapse);
+        var collapse = new bootstrap.Collapse(navbarCollapse);
         collapse.hide();
       }
     });
   });
+  
+  // --- Fix navbar hamburguesa para Bootstrap 5 ---
+  (function() {
+    function fixNavbarMobile() {
+      var btn = document.querySelector('.navbar-toggler');
+      if (!btn) return;
+      // Bootstrap 5 usa data-bs-* attributes por defecto
+      btn.setAttribute('data-bs-toggle', 'collapse');
+      btn.setAttribute('data-bs-target', '#mainNavbar');
+      btn.removeAttribute('data-toggle');
+      btn.removeAttribute('data-target');
+    }
+    fixNavbarMobile();
+    window.addEventListener('resize', fixNavbarMobile);
+  })();
   </script>
-
   <!-- Hero principal minimalista tipo Hazel/Webion con fondo sin transparencia ni recuadro -->
   <section class="hero-blur" style="position:relative; min-height:70vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:80px 0 40px 0; color:#fff; overflow:hidden;">
     <div class="hero-blur-bg" style="position:absolute; inset:0; z-index:1; pointer-events:none;"></div>
     <div style="max-width:700px; width:100%; text-align:center; margin:0 auto; z-index:2; position:relative;">
-      <div class="page-anim-text delay-1" style="font-size:1.6rem; letter-spacing:0.25em; color:#fff; margin-bottom:1.2rem; text-shadow:0 4px 24px #000, 0 2px 12px #000b; font-weight:900;">SOLUCIONES DIGITALES PARA RESTAURANTES</div>
-      <h1 class="page-anim-text delay-2" style="font-size:4.2rem; font-weight:900; letter-spacing:0.18em; margin-bottom:1.5rem; text-shadow:0 4px 24px #000, 0 2px 12px #000b;">BIENVENIDO A GASTRONOME</h1>
-      <div class="page-anim-text delay-3" style="font-size:1.4rem; color:#fff; margin-bottom:2.5rem; text-shadow:0 4px 24px #000, 0 2px 12px #000b; font-weight:800;">Minimalismo, tecnología y diseño para tu presencia online.</div>
+      <div class="page-anim-text delay-1" style="font-size:1.2rem; letter-spacing:0.15em; color:#fff; margin-bottom:1.2rem; text-shadow:0 4px 24px #000, 0 2px 12px #000b; font-weight:600;">SOLUCIONES DIGITALES PARA RESTAURANTES</div>
+      <h1 class="page-anim-text delay-2" style="font-size:5.5rem; font-weight:900; letter-spacing:0.12em; margin-bottom:1.5rem; text-shadow:0 4px 24px #000, 0 2px 12px #000b;">BIENVENIDO A GASTRONOME</h1>
+      <div class="page-anim-text delay-3" style="font-size:1.1rem; color:#fff; margin-bottom:2.5rem; text-shadow:0 4px 24px #000, 0 2px 12px #000b; font-weight:500;">Minimalismo, tecnología y diseño para tu presencia online.</div>
       <div style="display:flex; justify-content:center; gap:1.2rem; flex-wrap:wrap;">
         <a href="Nosotros.html" class="main-about-btn page-anim-text delay-4">Sobre Nosotros</a>
         <a href="Contacto.html" class="main-contact-btn page-anim-text delay-4">Contacto</a>
       </div>
     </div>
   </section>
-
   <!-- Galería tipo Instagram/portafolio (sin texto de Instagram ni section extra) -->
   <section style="background:#fff; color:#111; text-align:center; padding:60px 0 40px 0; position:relative; overflow:hidden;">
-    <h2 class="page-anim-text delay-1" style="font-size:2rem; font-weight:700; margin-bottom:2rem;">Galeria de Proyectos</h2>
-    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:1.5rem; max-width:1100px; margin:0 auto;">
-      <img src="./Fotos_Gas/menu-inicio.webp" srcset="./Fotos_Gas/menu-inicio.webp 600w, ./Fotos_Gas/menu-inicio.webp 1200w" sizes="(max-width:600px) 90vw, 180px" alt="Inicio del Menú" class="page-anim-text delay-2 proyecto-img" style="width:180px; height:180px; object-fit:cover; object-position:top; border-radius:12px; box-shadow:0 2px 12px #0001; cursor:pointer;" loading="lazy">
-      <img src="./Fotos_Gas/platillos-especiales.webp" srcset="./Fotos_Gas/platillos-especiales.webp 600w, ./Fotos_Gas/platillos-especiales.webp 1200w" sizes="(max-width:600px) 90vw, 180px" alt="Platillos Especiales" class="page-anim-text delay-3 proyecto-img" style="width:180px; height:180px; object-fit:cover; object-position:top; border-radius:12px; box-shadow:0 2px 12px #0001; cursor:pointer;" loading="lazy">
-      <img src="./Fotos_Gas/pagina-inicio.webp" srcset="./Fotos_Gas/pagina-inicio.webp 600w, ./Fotos_Gas/pagina-inicio.webp 1200w" sizes="(max-width:600px) 90vw, 180px" alt="Inicio de Página" class="page-anim-text delay-2 proyecto-img" style="width:180px; height:180px; object-fit:cover; object-position:top; border-radius:12px; box-shadow:0 2px 12px #0001; cursor:pointer;" loading="lazy">
-      <img src="./Fotos_Gas/pagina-menu.webp" srcset="./Fotos_Gas/pagina-menu.webp 600w, ./Fotos_Gas/pagina-menu.webp 1200w" sizes="(max-width:600px) 90vw, 180px" alt="Menú de Página" class="page-anim-text delay-3 proyecto-img" style="width:180px; height:180px; object-fit:cover; object-position:top; border-radius:12px; box-shadow:0 2px 12px #0001; cursor:pointer;" loading="lazy">
-      <img src="./Fotos_Gas/pagina-completa.webp" srcset="./Fotos_Gas/pagina-completa.webp 600w, ./Fotos_Gas/pagina-completa.webp 1200w" sizes="(max-width:600px) 90vw, 180px" alt="Página Completa" class="page-anim-text delay-2 proyecto-img" style="width:180px; height:180px; object-fit:cover; object-position:top; border-radius:12px; box-shadow:0 2px 12px #0001; cursor:pointer;" loading="lazy">
+    <h2 class="page-anim-text delay-1" style="font-size:3.5rem; font-weight:900; margin-bottom:0.5rem; letter-spacing:0.02em;">Galería de Proyectos</h2>
+    <p class="page-anim-text delay-1" style="font-size:1.2rem; font-weight:400; margin-bottom:3rem; color:#666;">Algunos de nuestros trabajos recientes</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; max-width:800px; margin:0 auto; justify-items:center;">
+      <img src="./Fotos_Gas/menu-inicio.webp" srcset="./Fotos_Gas/menu-inicio.webp 600w, ./Fotos_Gas/menu-inicio.webp 1200w" sizes="(max-width:600px) 45vw, 320px" alt="Inicio del Menú" class="page-anim-text delay-2 proyecto-img" style="width:320px; height:320px; object-fit:cover; object-position:top; border-radius:12px; box-shadow:0 2px 12px #0001; cursor:pointer;" loading="lazy">
+      <img src="./Fotos_Gas/platillos-especiales.webp" srcset="./Fotos_Gas/platillos-especiales.webp 600w, ./Fotos_Gas/platillos-especiales.webp 1200w" sizes="(max-width:600px) 45vw, 320px" alt="Platillos Especiales" class="page-anim-text delay-3 proyecto-img" style="width:320px; height:320px; object-fit:cover; object-position:top; border-radius:12px; box-shadow:0 2px 12px #0001; cursor:pointer;" loading="lazy">
+      <img src="./Fotos_Gas/pagina-inicio.webp" srcset="./Fotos_Gas/pagina-inicio.webp 600w, ./Fotos_Gas/pagina-inicio.webp 1200w" sizes="(max-width:600px) 45vw, 320px" alt="Inicio de Página" class="page-anim-text delay-2 proyecto-img" style="width:320px; height:320px; object-fit:cover; object-position:top; border-radius:12px; box-shadow:0 2px 12px #0001; cursor:pointer;" loading="lazy">
+      <img src="./Fotos_Gas/pagina-menu.webp" srcset="./Fotos_Gas/pagina-menu.webp 600w, ./Fotos_Gas/pagina-menu.webp 1200w" sizes="(max-width:600px) 45vw, 320px" alt="Menú de Página" class="page-anim-text delay-3 proyecto-img" style="width:320px; height:320px; object-fit:cover; object-position:top; border-radius:12px; box-shadow:0 2px 12px #0001; cursor:pointer;" loading="lazy">
     </div>
     <!-- Figuras decorativas para congruencia visual -->
     <div class="figura-serv figura-1"></div>
@@ -946,10 +996,9 @@
   <!-- Carrusel tipo Webion (ahora debajo del proceso) -->
   <section style="background:#fff; color:#111; text-align:center; padding:0; margin-top:40px;">
     <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" style="max-width:100vw; overflow:hidden;">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
+      <div class="carousel-inner">        <div class="carousel-item active">
           <img src="./Fotos_Gas/menu-digital.webp" class="d-block w-100" alt="Restaurante 1" style="max-height:420px; object-fit:cover; object-position: 0 25%; filter: brightness(0.55) contrast(1.1);">
-          <div class="carousel-caption d-none d-md-block" style="background:none;">
+          <div class="carousel-caption d-md-block" style="background:none;">
             <h2 style="font-size:2.5rem; font-weight:800; letter-spacing:0.12em; color:#fff; text-shadow:0 2px 12px #0008;">MENÚS DIGITALES</h2>
             <p style="font-size:1.1rem; color:#fff; text-shadow:0 2px 12px #0008;">Moderniza la experiencia de tus clientes con menús interactivos y visuales.</p>
             <a href="Servicios.html" class="btn btn-light" style="font-weight:600; border-radius:4px; background:#00BB7A; color:#fff; border:none;">Ver más</a>
@@ -957,7 +1006,7 @@
         </div>
         <div class="carousel-item">
           <img src="./Fotos_Gas/pagina-web.webp" class="d-block w-100" alt="Restaurante 2" style="max-height:420px; object-fit:cover; object-position: 0 15%; filter: brightness(0.55) contrast(1.1);">
-          <div class="carousel-caption d-none d-md-block" style="background:none;">
+          <div class="carousel-caption d-md-block" style="background:none;">
             <h2 style="font-size:2.5rem; font-weight:800; letter-spacing:0.12em; color:#fff; text-shadow:0 2px 12px #0008;">PÁGINAS WEB</h2>
             <p style="font-size:1.1rem; color:#fff; text-shadow:0 2px 12px #0008;">Sitios web minimalistas, rápidos y adaptados a tu restaurante.</p>
             <a href="Servicios.html" class="btn btn-light" style="font-weight:600; border-radius:4px; background:#00BB7A; color:#fff; border:none;">Ver más</a>
@@ -1313,30 +1362,280 @@
     }
   })();
   </script>
-
   <footer style="background:#111; color:#fff; text-align:center; padding:2rem 0 1rem 0; font-size:1.1rem; letter-spacing:0.04em; margin-top:0;">
     <div style="margin-bottom:0.5rem;">&copy; 2025 Gastronome. Todos los derechos reservados.</div>
     <div style="font-size:0.95rem; color:#bbb;">Sitio desarrollado por el equipo Gastronome | contacto@gastronome.com</div>
-    <div style="margin-top:1.2rem; display:flex; justify-content:center; gap:1.5rem; align-items:center;">
+    
+    <!-- Redes sociales para desktop -->
+    <div class="footer-social-desktop" style="margin-top:1.2rem; display:flex; justify-content:center; gap:1.5rem; align-items:center;">
       <a href="mailto:gastronome899@gmail.com" target="_blank" aria-label="Email" style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px;">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><polyline points="3 7 12 13 21 7"/></svg>
       </a>
       <a href="https://wa.me/524491383086" target="_blank" aria-label="WhatsApp" style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px;">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 20.3A16.88 16.88 0 0 1 12 22C6.48 22 2 17.52 2 12.01A9.99 9.99 0 0 1 12 2c5.52 0 10 4.48 10 10.01 0 2.13-.67 4.1-1.81 5.73l.81 3.26-3.26-.7z"/><path d="M16.2 17.2c-1.2.4-2.5.6-3.8.6-4.42 0-8-3.58-8-8 0-4.42 3.58-8 8-8s8 3.58 8 8c0 1.3-.2 2.6-.6 3.8l-1.1-1.1c-.2-.2-.5-.2-.7 0l-2.1 2.1c-.2.2-.2.5 0 .7l1.1 1.1z"/></svg>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
       </a>
       <a href="https://instagram.com/gastronomeDevs" target="_blank" aria-label="Instagram" style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px;">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1"/></svg>
       </a>
-      <a href="https://facebook.com/" target="_blank" aria-label="Facebook" style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px;"></a>
+      <a href="https://facebook.com/" target="_blank" aria-label="Facebook" style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+    </div>
+    
+    <!-- Redes sociales para móvil: horizontal como otros archivos -->
+    <div class="footer-social-mobile" style="margin-top:1.2rem; justify-content:center; gap:1.5rem; align-items:center;">
+      <a href="mailto:gastronome899@gmail.com" target="_blank" aria-label="Email" style="display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; background:rgba(255,255,255,0.1); border-radius:50%; transition:all 0.3s ease; border:2px solid transparent;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><polyline points="3 7 12 13 21 7"/></svg>
+      </a>
+      <a href="https://wa.me/524491383086" target="_blank" aria-label="WhatsApp" style="display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; background:rgba(255,255,255,0.1); border-radius:50%; transition:all 0.3s ease; border:2px solid transparent;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+      </a>
+      <a href="https://instagram.com/gastronomeDevs" target="_blank" aria-label="Instagram" style="display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; background:rgba(255,255,255,0.1); border-radius:50%; transition:all 0.3s ease; border:2px solid transparent;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="https://facebook.com/" target="_blank" aria-label="Facebook" style="display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; background:rgba(255,255,255,0.1); border-radius:50%; transition:all 0.3s ease; border:2px solid transparent;">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
       </a>
     </div>
   </footer>
 
-  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <style>
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>  <style>
     section[style*='background:#fff url'] h1 { text-shadow:0 2px 12px #fff8; }
     .carousel-caption { border-radius:12px; padding:2rem 1.5rem; }
+      /* Carrusel: Textos responsivos mejorados - Sin recuadro en móvil */
+    @media (max-width: 768px) {
+      .carousel-caption {
+        background: transparent !important;
+        border-radius: 0 !important;
+        padding: 1.5rem 1rem !important;
+        margin: 0 1rem 2rem 1rem !important;
+        border: none !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+        max-width: calc(100vw - 2rem) !important;
+        box-sizing: border-box !important;
+      }
+        .carousel-caption h2 {
+        font-size: 1.8rem !important;
+        font-weight: 900 !important;
+        margin-bottom: 0.8rem !important;
+        letter-spacing: 0.08em !important;
+        line-height: 1.2 !important;
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.9), 0 1px 6px rgba(0, 0, 0, 0.8) !important;
+        color: #fff !important;
+      }
+      
+      .carousel-caption p {
+        font-size: 1rem !important;
+        margin-bottom: 1.2rem !important;
+        line-height: 1.4 !important;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.7) !important;
+        color: #fff !important;
+        font-weight: 600 !important;
+      }
+      
+      .carousel-caption .btn {
+        font-size: 0.95rem !important;
+        padding: 0.7rem 1.5rem !important;
+        border-radius: 8px !important;
+        font-weight: 700 !important;
+        background: #01a54b !important;
+        border: 2px solid #01a54b !important;
+        box-shadow: 0 4px 16px rgba(1, 165, 75, 0.4) !important;
+        transition: all 0.3s ease !important;
+      }
+      
+      .carousel-caption .btn:hover {
+        background: #fff !important;
+        color: #01a54b !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 20px rgba(1, 165, 75, 0.6) !important;
+      }
+    }
+      @media (max-width: 600px) {
+      .carousel-caption {
+        padding: 1.2rem 0.8rem !important;
+        margin: 0 0.5rem 1.5rem 0.5rem !important;
+        background: transparent !important;
+        border: none !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+      }
+      
+      .carousel-caption h2 {
+        font-size: 1.6rem !important;
+        margin-bottom: 0.6rem !important;
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.9), 0 1px 6px rgba(0, 0, 0, 0.8) !important;
+        color: #fff !important;
+        font-weight: 900 !important;
+      }
+      
+      .carousel-caption p {
+        font-size: 0.9rem !important;
+        margin-bottom: 1rem !important;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.7) !important;
+        color: #fff !important;
+        font-weight: 600 !important;
+      }
+      
+      .carousel-caption .btn {
+        font-size: 0.85rem !important;
+        padding: 0.6rem 1.2rem !important;
+      }
+    }    /* iPhone 14 Pro Max specific fixes (430px width) */
+    @media (max-width: 430px) {
+      .carousel-caption {
+        padding: 1.1rem 0.7rem !important;
+        margin: 0 0.4rem 1.2rem 0.4rem !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+        position: absolute !important;
+        bottom: 10px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: calc(100% - 0.8rem) !important;
+        box-sizing: border-box !important;
+      }
+      
+      .carousel-caption h2 {
+        font-size: 1.5rem !important;
+        line-height: 1.15 !important;
+        margin-bottom: 0.6rem !important;
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.9), 0 1px 6px rgba(0, 0, 0, 0.8) !important;
+        color: #fff !important;
+        font-weight: 900 !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+      }
+      
+      .carousel-caption p {
+        font-size: 0.85rem !important;
+        margin-bottom: 0.9rem !important;
+        line-height: 1.35 !important;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.7) !important;
+        color: #fff !important;
+        font-weight: 600 !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+      }
+      
+      .carousel-caption .btn {
+        font-size: 0.82rem !important;
+        padding: 0.55rem 1.1rem !important;
+        white-space: nowrap !important;
+      }
+      
+      /* Ensure carousel image doesn't stretch too much */
+      #mainCarousel .carousel-inner img {
+        max-height: 220px !important;
+        min-height: 170px !important;
+        object-fit: cover !important;
+        object-position: center !important;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .carousel-caption {
+        padding: 1rem 0.6rem !important;
+        margin: 0 0.3rem 1rem 0.3rem !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+      }
+      
+      .carousel-caption h2 {
+        font-size: 1.4rem !important;
+        line-height: 1.1 !important;
+        margin-bottom: 0.5rem !important;
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.9), 0 1px 6px rgba(0, 0, 0, 0.8) !important;
+        color: #fff !important;
+        font-weight: 900 !important;
+      }
+      
+      .carousel-caption p {
+        font-size: 0.8rem !important;
+        margin-bottom: 0.8rem !important;
+        line-height: 1.3 !important;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.7) !important;
+        color: #fff !important;
+        font-weight: 600 !important;
+      }
+      
+      .carousel-caption .btn {
+        font-size: 0.8rem !important;
+        padding: 0.5rem 1rem !important;
+      }
+    }    
+    /* Additional iPhone 14 Pro Max carousel positioning fixes */
+    @media (max-width: 430px) and (min-width: 401px) {
+      /* Ensure carousel container doesn't overflow */
+      #mainCarousel {
+        overflow: hidden !important;
+        max-width: 100vw !important;
+      }
+      
+      .carousel-inner {
+        overflow: hidden !important;
+      }
+      
+      /* Prevent text from being cut off at viewport edges */
+      .carousel-caption {
+        max-width: calc(100vw - 1rem) !important;
+        width: calc(100% - 1rem) !important;
+        left: 0.5rem !important;
+        right: 0.5rem !important;
+        transform: none !important;
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+      }
+      
+      /* Improve text readability on iPhone 14 Pro Max */
+      .carousel-caption h2 {
+        max-width: 100% !important;
+        text-align: center !important;
+        padding: 0 0.2rem !important;
+        box-sizing: border-box !important;
+      }
+      
+      .carousel-caption p {
+        max-width: 100% !important;
+        text-align: center !important;
+        padding: 0 0.2rem !important;
+        box-sizing: border-box !important;
+      }
+    }
+
+    /* Carrusel: Altura adaptativa para evitar cortes */
+    @media (max-width: 768px) {
+      #mainCarousel .carousel-inner img {
+        max-height: 280px !important;
+        min-height: 200px !important;
+        object-fit: cover !important;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      #mainCarousel .carousel-inner img {
+        max-height: 240px !important;
+        min-height: 180px !important;
+      }
+    }
+    
+    @media (max-width: 400px) {
+      #mainCarousel .carousel-inner img {
+        max-height: 200px !important;
+        min-height: 160px !important;
+      }
+    }
+    
     @media (max-width: 900px) {
       section[style*="background:url"] h1 { font-size:2.1rem !important; }
       section[style*="background:url"] div[style*='max-width:700px'] { padding:1.5rem 0.5rem !important; }
@@ -1357,7 +1656,7 @@
       h1, h2 { font-size: 1.5rem !important; }
       header { padding: 30px 0 20px 0 !important; }
       .btn { font-size: 0.95rem !important; padding: 8px 10px !important; }
-    }
+    }    /* Carrusel: Flechas responsivas - Desktop */
     .carousel-control-prev-icon,
     .carousel-control-next-icon {
       background-image: none !important;
@@ -1378,6 +1677,43 @@
       font-size: 5.2rem;
       color: #00BB7A;
       font-weight: bold;
+    }
+      /* Carrusel: Flechas móviles simples y minimalistas */
+    @media (max-width: 768px) {
+      .carousel-control-prev,
+      .carousel-control-next {
+        width: auto !important;
+        height: auto !important;
+        background: transparent !important;
+        border: none !important;
+        border-radius: 0 !important;
+        margin: 0 8px !important;
+      }
+      
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        width: 32px !important;
+        height: 32px !important;
+        background: transparent !important;
+      }
+      
+      .carousel-control-prev-icon::after {
+        content: '‹' !important;
+        font-size: 2.8rem !important;
+        color: #00BB7A !important;
+        font-weight: bold !important;
+        line-height: 1 !important;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+      }
+      
+      .carousel-control-next-icon::after {
+        content: '›' !important;
+        font-size: 2.8rem !important;
+        color: #00BB7A !important;
+        font-weight: bold !important;
+        line-height: 1 !important;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+      }
     }
     /* Botón de contacto rápido personalizado */
     .contacto-btn {
@@ -1440,7 +1776,6 @@
     });
     scrollBtn.onclick = function() { window.scrollTo({top:0, behavior:'smooth'}); };
   </script>
-
   <style>
   @media (max-width: 600px) {
     /* Oculta el contenedor del juego si aparece */
@@ -1475,7 +1810,66 @@
       line-height: 1.35 !important;
       text-shadow: none !important;
     }
+    
+    /* Footer responsive - Redes sociales móvil */
+    .footer-social-desktop {
+      display: none !important;
+    }
+    .footer-social-mobile {
+      display: flex !important;
+      justify-content: center !important;
+      gap: 1.5rem !important;
+      align-items: center !important;
+    }
+    .footer-social-mobile a {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 42px !important;
+      height: 42px !important;
+      background: rgba(255,255,255,0.1) !important;
+      border-radius: 50% !important;
+      transition: all 0.3s ease !important;
+      border: 2px solid transparent !important;
+    }
+    .footer-social-mobile a:hover {
+      background: #01a54b !important;
+      border-color: #01a54b !important;
+      transform: translateY(-2px) !important;
+    }
+    .footer-social-mobile a:hover span,
+    .footer-social-mobile a:hover svg {
+      color: #fff !important;
+      stroke: #fff !important;
+    }
+    .footer-social-mobile svg {
+      stroke: #fff !important;
+      fill: none !important;
+    }
+    
+    /* Footer con márgenes laterales en móvil */
+    footer {
+      padding: 2rem 4vw 1rem 4vw !important;
+      margin: 0 !important;
+    }
+    
+    /* Asegurar visibilidad de redes sociales móviles */
+    .footer-social-mobile {
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
   }
+  
+  @media (min-width: 601px) {
+    /* Footer responsive - Redes sociales desktop */
+    .footer-social-desktop {
+      display: flex !important;
+    }
+    .footer-social-mobile {
+      display: none !important;
+    }
+  }
+  
   @media (max-width: 600px) {
     /* Hero principal: botones uno al lado del otro en móvil */
     .hero-blur > div > div[style*="display:flex"] {
@@ -1507,8 +1901,37 @@
     .main-about-btn, .main-contact-btn {
       font-size: 0.78rem !important;
       padding: 0.35rem 0.05rem !important;
-    }
-  }
+    }  }
   </style>
+
+  <script>
+    // Activar animaciones cuando se carga la página
+    window.addEventListener('load', function() {
+      // Activar animaciones de texto
+      document.querySelectorAll('.page-anim-text').forEach(function(element) {
+        element.classList.add('animated');
+      });
+      
+      // Animaciones de reveal para elementos cuando aparecen en viewport
+      function revealElements() {
+        const reveals = document.querySelectorAll('.reveal-element');
+        for (let i = 0; i < reveals.length; i++) {
+          const windowHeight = window.innerHeight;
+          const elementTop = reveals[i].getBoundingClientRect().top;
+          const elementVisible = 150;
+          
+          if (elementTop < windowHeight - elementVisible) {
+            reveals[i].classList.add('revealed');
+          }
+        }
+      }
+      
+      // Ejecutar al cargar y al hacer scroll      revealElements();
+      window.addEventListener('scroll', revealElements);
+    });
+  </script>
+
+  <!-- Script de Bootstrap 5 para menú hamburguesa en móvil -->
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

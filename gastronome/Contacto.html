@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto | Gastronome</title>
-    <link rel="stylesheet" href="index.css">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Contacto | Gastronome</title>    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="navbar-mobile.css">
+    <link rel="stylesheet" href="navbar-reset.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>        body { background: #fff; color: #111; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; }
         .container { max-width: 500px; margin: 60px auto 0 auto; padding: 40px 30px; border: 2px solid #111; border-radius: 24px; background: #fff; }
         h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; letter-spacing: -2px; }
@@ -330,115 +331,7 @@
           color: #01a54b !important;
           box-shadow: 0 8px 32px #01a54b55 !important;
           transform: translateY(-8px) scale(1.04) rotate(-1deg) !important;
-          outline: 0 !important;
-        }        /* Estilos globales para navbar */
-        .navbar-nav .nav-link.active {
-          color: #01a54b !important;
-          border: 1.2px solid #01a54b !important;
-          border-radius: 1em !important;
-          background: #fff !important;
-          font-weight: 800;
-          padding: 0.32em 0.85em !important;
-          transition: color 0.2s, border-color 0.2s, background 0.2s;
-        }
-        .navbar-nav .nav-link {
-          transition: color 0.2s, border-color 0.2s, background 0.2s;
-          border-radius: 1em;
-          border: 1.2px solid transparent;
-          padding: 0.32em 0.85em;
-        }
-        .navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus {
-          color: #01a54b !important;
-          border: 1.2px solid #01a54b !important;
-          background: #fff !important;
-        }
-
-        /* Mobile navbar styles for uniformity - matches index.css */
-        @media (max-width: 600px) {
-          .navbar {
-            padding: 0.7rem 4vw !important;
-            min-width: 0 !important;
-            max-width: 100vw !important;
-            background: #fff !important;
-            border-bottom: 1.5px solid #eee !important;
-            border-radius: 0 0 18px 18px !important;
-            box-shadow: 0 2px 16px #0001 !important;
-            position: sticky !important;
-            top: 0 !important;
-            z-index: 1002 !important;
-          }
-          .navbar-collapse {
-            background: #fff !important;
-            border-radius: 0 0 18px 18px !important;
-            box-shadow: 0 2px 16px #0001 !important;
-            margin-top: 0.5rem !important;
-            padding: 1.2rem 0.5rem !important;
-            position: absolute !important;
-            left: 0; right: 0;
-            top: 100%;
-            z-index: 1001 !important;
-            width: 100vw !important;
-            max-width: 100vw !important;
-          }
-          .navbar-nav {
-            flex-direction: column !important;
-            gap: 1rem !important;
-            align-items: flex-start !important;
-            width: 100%;
-            padding: 0 !important;
-            margin: 0 !important;
-          }
-          .navbar-nav .nav-link {
-            font-size: 1.35rem !important;
-            padding: 0.38em 1.3em !important;
-            min-width: 64vw !important;
-            border-radius: 1.3em !important;
-            border-width: 1.2px !important;
-            box-sizing: border-box !important;
-            position: relative;
-            z-index: 2;
-            background: #fff !important;
-            margin: 0.18em 0 !important;
-            text-align: left !important;
-            transition: background 0.2s, color 0.2s, border-color 0.2s;
-          }
-          .navbar-nav .nav-link.active {
-            box-shadow: 0 0 0 2px #01a54b33 !important;
-            border: 1.2px solid #01a54b !important;
-            background: #fff !important;
-            color: #01a54b !important;
-            z-index: 2;
-            position: relative;
-          }
-          .navbar-toggler {
-            margin-right: 2vw !important;
-            margin-left: auto !important;
-            border-radius: 0 !important;
-            border: 1.5px solid #01a54b !important;
-            background: #fff !important;
-            width: 54px !important;
-            height: 54px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            z-index: 1003 !important;
-            box-shadow: 0 2px 16px #0001 !important;
-            transition: background 0.2s, border-color 0.2s;
-          }
-          .navbar-toggler:active, .navbar-toggler:focus {
-            background: #f6fff9 !important;
-            border-color: #01a54b !important;
-          }
-          .navbar-toggler-icon {
-            width: 36px !important;
-            height: 36px !important;
-            margin: 0 auto !important;
-            background-size: 36px 36px !important;
-            transition: filter 0.2s;
-          }
-        }
-
-        /* Figuras decorativas congruentes con Servicios.html */
+          outline: 0 !important;        }        /* Figuras decorativas congruentes con Servicios.html */
         .figura-serv { position: absolute; border-radius: 50%; opacity: 0.10; z-index: 0; }
         .figura-1 { top: -40px; left: -40px; width: 110px; height: 110px; background: linear-gradient(135deg,#111 80%,#fff 100%); }
         .figura-2 { bottom: -30px; right: -30px; width: 70px; height: 70px; background: linear-gradient(135deg,#fff 60%,#111 100%); }
@@ -760,10 +653,7 @@
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
         </a>
       </div>
-    </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </footer>    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -783,46 +673,31 @@
       else if(path.includes('servicios.html')) document.querySelector('.SERVICIOS_ACTIVE').classList.add('active');
       else if(path.includes('portafoliominimal.html')) document.querySelector('.PORTAFOLIO_ACTIVE').classList.add('active');
       else if(path.includes('contacto.html')) document.querySelector('.CONTACTO_ACTIVE').classList.add('active');
-    })();
-    // Refuerzo: cerrar menú móvil al hacer click en un link (mejor UX móvil)
+    })();    // Refuerzo: cerrar menú móvil al hacer click en un link (mejor UX móvil)
     document.querySelectorAll('.navbar-nav .nav-link').forEach(function(link){
       link.addEventListener('click', function(){
         var navbarCollapse = document.getElementById('mainNavbar');
         if(window.innerWidth <= 768 && navbarCollapse.classList.contains('show')) {
-          var collapse = bootstrap.Collapse.getOrCreateInstance(navbarCollapse);
+          var collapse = new bootstrap.Collapse(navbarCollapse);
           collapse.hide();
         }
       });
     });
-    // Refuerzo para que la hamburguesa funcione en móvil igual que en PortafolioMinimal
-    if (window.innerWidth <= 600) {
-      document.querySelector('.navbar-toggler').addEventListener('click', function() {
-        this.classList.toggle('collapsed');
-        // No tocar el menú, Bootstrap lo maneja
-      });
-    }
-    // --- Fix navbar hamburguesa solo en móvil para Bootstrap 4 ---
+    
+    // --- Fix navbar hamburguesa para Bootstrap 5 ---
     (function() {
       function fixNavbarMobile() {
         var btn = document.querySelector('.navbar-toggler');
         if (!btn) return;
-        if (window.innerWidth <= 600) {
-          // Cambia atributos a Bootstrap 4
-          btn.setAttribute('data-toggle', 'collapse');
-          btn.setAttribute('data-target', '#mainNavbar');
-          btn.removeAttribute('data-bs-toggle');
-          btn.removeAttribute('data-bs-target');
-        } else {
-          // Restaura atributos Bootstrap 5 si existían
-          btn.setAttribute('data-bs-toggle', 'collapse');
-          btn.setAttribute('data-bs-target', '#mainNavbar');
-          btn.removeAttribute('data-toggle');
-          btn.removeAttribute('data-target');
-        }
+        // Bootstrap 5 usa data-bs-* attributes por defecto
+        btn.setAttribute('data-bs-toggle', 'collapse');
+        btn.setAttribute('data-bs-target', '#mainNavbar');
+        btn.removeAttribute('data-toggle');
+        btn.removeAttribute('data-target');
       }
       fixNavbarMobile();
       window.addEventListener('resize', fixNavbarMobile);
-    })();    // Sistema de animación gradual optimizado para móvil - RESTORED & OPTIMIZED
+    })();// Sistema de animación gradual optimizado para móvil - RESTORED & OPTIMIZED
     document.addEventListener('DOMContentLoaded', function() {
       function revealElements() {
         var elements = document.querySelectorAll('.reveal-element');
