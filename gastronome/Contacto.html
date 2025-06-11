@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto | Gastronome</title>    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="navbar-mobile.css">
-    <link rel="stylesheet" href="navbar-reset.css">
+    <link rel="stylesheet" href="navbar-mobile-unified.css">
+    <link rel="stylesheet" href="navbar-mobile-effects.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="navbar-mobile-unified.js" defer></script>
     <style>        body { background: #fff; color: #111; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; }
         .container { max-width: 500px; margin: 60px auto 0 auto; padding: 40px 30px; border: 2px solid #111; border-radius: 24px; background: #fff; }
         h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; letter-spacing: -2px; }
@@ -559,20 +560,24 @@
         }
     </style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white" style="padding: 1.2rem 2rem; border-bottom: 1px solid #eee; width:100vw; box-sizing:border-box;">
-        <span style="font-weight: bold; font-size: 1.3rem; letter-spacing: 1px;">Gastronome</span>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation" style="outline:none;">
+<body>    <!-- Navbar Unificado -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+          <span class="navbar-brand">Gastronome</span>
+          
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
-            <div class="navbar-nav">
-                <a class="nav-link HOME_ACTIVE" href="index.html">Inicio</a>
-                <a class="nav-link NOSOTROS_ACTIVE" href="Nosotros.html">Nosotros</a>
-                <a class="nav-link SERVICIOS_ACTIVE" href="Servicios.html">Servicios</a>
-                <a class="nav-link PORTAFOLIO_ACTIVE" href="PortafolioMinimal.html">Portafolio</a>
-                <a class="nav-link CONTACTO_ACTIVE" href="Contacto.html">Contacto</a>
+          </button>
+          
+          <div class="collapse navbar-collapse" id="mainNavbar">
+            <div class="navbar-nav ms-auto">
+              <a class="nav-link HOME_ACTIVE" href="index.html">Inicio</a>
+              <a class="nav-link NOSOTROS_ACTIVE" href="Nosotros.html">Nosotros</a>
+              <a class="nav-link SERVICIOS_ACTIVE" href="Servicios.html">Servicios</a>
+              <a class="nav-link PORTAFOLIO_ACTIVE" href="PortafolioMinimal.html">Portafolio</a>
+              <a class="nav-link CONTACTO_ACTIVE" href="Contacto.html">Contacto</a>
             </div>
+          </div>
         </div>
     </nav>
     <div class="container reveal-element" style="max-width: 500px; margin: 60px auto 0 auto; padding: 40px 30px; border: 2px solid #111; border-radius: 24px; background: #fff;">
@@ -681,23 +686,9 @@
           var collapse = new bootstrap.Collapse(navbarCollapse);
           collapse.hide();
         }
-      });
-    });
+      });    });
     
-    // --- Fix navbar hamburguesa para Bootstrap 5 ---
-    (function() {
-      function fixNavbarMobile() {
-        var btn = document.querySelector('.navbar-toggler');
-        if (!btn) return;
-        // Bootstrap 5 usa data-bs-* attributes por defecto
-        btn.setAttribute('data-bs-toggle', 'collapse');
-        btn.setAttribute('data-bs-target', '#mainNavbar');
-        btn.removeAttribute('data-toggle');
-        btn.removeAttribute('data-target');
-      }
-      fixNavbarMobile();
-      window.addEventListener('resize', fixNavbarMobile);
-    })();// Sistema de animación gradual optimizado para móvil - RESTORED & OPTIMIZED
+    // Sistema de animación gradual optimizado para móvil - RESTORED & OPTIMIZED
     document.addEventListener('DOMContentLoaded', function() {
       function revealElements() {
         var elements = document.querySelectorAll('.reveal-element');
