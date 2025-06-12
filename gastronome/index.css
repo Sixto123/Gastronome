@@ -49,12 +49,23 @@ body {
   section {
     padding: 40px 0;
   }
-  
-  h2 {
+    h2 {
     color: #000000;
     margin-bottom: 20px;
     text-align: center;
     font-weight: bold;
+  }
+  
+  /* Corregir título "¿Qué hacemos?" para que sea blanco en sección con fondo negro */
+  section[style*="background:#111"] h2 {
+    color: #ffffff !important;
+  }
+  
+  /* Específico para PC/desktop */
+  @media (min-width: 992px) {
+    section[style*="background:#111"] h2 {
+      color: #ffffff !important;
+    }
   }
   
   ul {
