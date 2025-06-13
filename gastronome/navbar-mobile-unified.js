@@ -157,8 +157,7 @@
         ensureBootstrapAttributes();
         
         // Estado inicial
-        isNavbarOpen = navbarCollapse.classList.contains('show');
-          // EVENT LISTENER PRINCIPAL - Toggle
+        isNavbarOpen = navbarCollapse.classList.contains('show');        // EVENT LISTENER PRINCIPAL - Toggle
         if (navbarToggler) {
             navbarToggler.addEventListener('click', function(e) {
                 // No prevenir el default para que Bootstrap 5 funcione
@@ -167,7 +166,8 @@
                 // Actualizar el estado después de un pequeño delay
                 setTimeout(() => {
                     isNavbarOpen = navbarCollapse.classList.contains('show');
-                    console.log(`🔄 Estado actualizado: ${isNavbarOpen ? 'abierto' : 'cerrado'}`);                }, 100);
+                    console.log(`🔄 Estado actualizado: ${isNavbarOpen ? 'abierto' : 'cerrado'}`);
+                }, 100);
             });
         }
         
@@ -229,8 +229,7 @@
         
         console.log('✅ Navbar móvil unificado inicializado');
     }
-    
-    // INICIALIZACIÓN - Múltiples puntos de entrada para máxima compatibilidad
+      // INICIALIZACIÓN - Múltiples puntos de entrada para máxima compatibilidad
     
     // 1. Si el DOM ya está cargado
     if (document.readyState === 'loading') {
@@ -242,15 +241,10 @@
     
     // 2. Backup en window load
     window.addEventListener('load', function() {
-        setTimeout(init, 50); // Pequeño delay para asegurar que todo esté cargado
-    });
-    
-    // 3. Backup adicional para casos extremos
-    setTimeout(function() {
         if (!navbarToggler || !navbarCollapse) {
             console.log('🔧 Ejecutando inicialización de respaldo...');
-            init();
+            setTimeout(init, 100);
         }
-    }, 500);
+    });
     
 })();
